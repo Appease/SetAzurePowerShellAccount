@@ -1,5 +1,6 @@
 # halt immediately on any errors which occur in this module
 $ErrorActionPreference = 'Stop'
+Import-Module Azure
 
 function Invoke(
 
