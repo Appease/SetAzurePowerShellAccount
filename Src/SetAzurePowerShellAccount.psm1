@@ -1,6 +1,6 @@
 # halt immediately on any errors which occur in this module
 $ErrorActionPreference = 'Stop'
-Import-Module Azure
+Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ServiceManagement\Azure' -Force -RequiredVersion '0.8.8'
 
 function Invoke(
 
@@ -24,11 +24,11 @@ $Password,
 $PreserveExisting){
 
     if(!$PreserveExisting.IsPresent){
-        Get-AzureAccount | %{Remove-AzureAccount $_.Id -Force}
+        Azure\Get-AzureAccount | %{Azure\Remove-AzureAccount $_.Id -Force}
     }
 
     $PSCredential = New-Object System.Management.Automation.PSCredential $UserName,($Password| ConvertTo-SecureString -AsPlainText -Force)
-    Add-AzureAccount -Credential $PSCredential
+    Azure\Add-AzureAccount -Credential $PSCredential
 
 }
 
